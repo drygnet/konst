@@ -23,7 +23,7 @@ export class AppComponent implements OnInit {
 
   showPopup(item) {
     this.popup = item;
-    console.log(this.popup)
+    console.log(this.popup);
   }
 
   checkItem(item) {
