@@ -3,7 +3,12 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class ArtService {
 
-  constructor() { }
+  constructor() {
+    if (!localStorage.getItem('artItems')) {
+      localStorage.setItem('artItems', JSON.stringify(this.items));
+    }
+    this.localItems = JSON.parse(localStorage.getItem('artItems'));
+  }
   localItems = [];
   items = [
     {
@@ -464,11 +469,6 @@ export class ArtService {
   ];
 
   getItems() {
-    if (!localStorage.getItem('artItems')) {
-      localStorage.setItem('artItems', JSON.stringify(this.items));
-    } else {
-      this.localItems = JSON.parse(localStorage.getItem('artItems'));
-    }
     return this.localItems;
   }
 
