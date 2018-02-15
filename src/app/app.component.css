@@ -120,6 +120,24 @@
     color: gold;
 }
 
+.grid.gridselect .griditem .star {
+  font-size: 35px;
+}
+
+.grid.gridselect .griditem.checked {
+  background-color: darkgrey;
+}
+
+.grid.gridselect .griditem.checked .number {
+  background: none;
+  padding: 0;
+  border-radius: 0;
+}
+
+.grid.gridselect .griditem .value {
+  font-size: 12px;
+}
+
 .list {
     width: 100%;
     clear: both;

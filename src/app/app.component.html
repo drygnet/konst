@@ -26,7 +26,9 @@
 
   <div class="grid gridselect" *ngIf="view == 'gridselect'">
     <div class="griditem" [ngClass]="{'checked': item.checked}" *ngFor="let item of ordered()" (click)="popup = item">
-      <div class="number">{{item.id}}</div>
+      <div class="number">{{item.id}}
+        <div class="value">{{item.value}}kr</div>
+      </div>
       <div class="star" *ngIf="item.stars > 0">★</div>
     </div>
   </div>
