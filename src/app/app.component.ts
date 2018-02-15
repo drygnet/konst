@@ -12,9 +12,27 @@ export class AppComponent implements OnInit {
   constructor(private art: ArtService) { }
   items = [];
   popup = null;
+  view = 'grid';
 
   ngOnInit() {
     this.items = this.art.getItems();
+  }
+
+  ordered() {
+    return this.items.sort(function (a, b) {
+      return (a.id > b.id) ? 1 : -1;
+    });
+  }
+
+  sorted() {
+    this.items.map(item => {
+      if (item.stars == null) {
+        item.stars = 0;
+      }
+    });
+    return this.items.sort(function (a, b) {
+      return b.stars - a.stars || b.value - a.value;
+    });
   }
 
   star(item, rating) {
@@ -23,11 +41,9 @@ export class AppComponent implements OnInit {
 
   showPopup(item) {
     this.popup = item;
-    console.log(this.popup);
   }
 
   checkItem(item) {
-    console.log('checking');
     this.art.checkItem(item);
   }
 }

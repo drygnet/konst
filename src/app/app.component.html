@@ -15,22 +15,35 @@
   </div>
 </div>
 
-<div class="head" *ngIf="!popup">Header</div>
+<div class="head" *ngIf="!popup">
+<div class="menu" (click)="view = 'gridselect'">Välj</div>
+<div class="menu" (click)="view = 'grid'">Bingo</div>
+<div class="menu" (click)="view = 'list'">Lista</div>
+</div>
 
 <div class="main" *ngIf="!popup">
 
 
-  <div class="grid">
-    <div class="griditem" [ngClass]="{'checked': item.checked}" *ngFor="let item of items" (click)="checkItem(item)">
+  <div class="grid gridselect" *ngIf="view == 'gridselect'">
+    <div class="griditem" [ngClass]="{'checked': item.checked}" *ngFor="let item of ordered()" (click)="popup = item">
       <div class="number">{{item.id}}</div>
     </div>
   </div>
 
-  <div class="list">
-    <div class="listitem" *ngFor="let item of items">
-      <div class="image" (click)="popup = item"><img [src]="'assets/img/' + item.id + '.JPG'"></div>
+    <div class="grid" *ngIf="view == 'grid'">
+      <div class="griditem" [ngClass]="{'checked': item.checked}" *ngFor="let item of ordered()" (click)="checkItem(item)">
+        <div class="number">{{item.id}}</div>
+        <div class="star" *ngIf="item.stars > 0">★</div>
+      </div>
+    </div>
+
+  <div class="list" *ngIf="view == 'list'">
+    <div class="listitem" (click)="popup = item" *ngFor="let item of sorted()" [ngClass]="{'checked': item.checked}">
+      <div class="image"><img [src]="'assets/img/' + item.id + '.JPG'"></div>
+      <div class="star" *ngIf="item.stars > 0">★</div>
+      <div class="starnumber" *ngIf="item.stars > 0">{{item.stars}}</div>
       <div class="info">{{item.name}}</div>
-      <div class="value">{{item.value}}</div>
+      <div class="value">{{item.value}} kr  #{{item.id}}</div>
     </div>
   </div>
 

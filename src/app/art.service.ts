@@ -474,13 +474,12 @@ export class ArtService {
 
   checkItem(item) {
     item.checked = !item.checked;
-    console.log(item);
     this.save();
   }
 
   star(item, rating) {
-    if (rating === 1 && item.stars === 1) {
-      item.stars = 0;
+    if (rating === item.stars) {
+      item.stars = item.stars - 1;
     } else {
       item.stars = rating;
     }
