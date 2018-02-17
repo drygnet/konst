@@ -31,7 +31,7 @@ export class AppComponent implements OnInit {
       }
     });
     return this.items.sort(function (a, b) {
-      return b.stars - a.stars || b.value - a.value || a.id - b.id;
+      return b.stars - a.stars || b.value - a.value || a.id - b.id; // snyggt!
     });
   }
 
